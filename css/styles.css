@@ -28,15 +28,14 @@ a img {
 
 article section {
 	margin-bottom: 5px;
-	line-height: 1.4em;
+	line-height: 1.5em;
 	font-size: 1.1em;
 }
 
 article section a {
-	text-decoration: none;
+	text-decoration: underline;
 	color: #e66d1d;
 	font-weight: strong;
-	border-bottom: 1px #e66d1d solid;
 }
 
 h1 {
@@ -111,6 +110,14 @@ h1 em {
 #liste-reseaux-sociaux li a {
 	display: block;
 	position: absolute;
+	
+	color: white;
+	text-shadow: 0px 0px 9px #777;
+	
+	font-size: 32px;
+	padding: 5px;
+	width: 32px;
+	
 	bottom: 0;
 	
 	z-index: -5;
@@ -120,9 +127,14 @@ h1 em {
 
 }
 
+#liste-reseaux-sociaux li a:hover {
+	color: #E66D1D;
+	text-shadow: 0px 0px 9px #E66D1D;
+}
+
 
 #liste-reseaux-sociaux li a.position-finale {
-	bottom: -80px;
+	bottom: -50px;
 
 	opacity: 1;
 	-moz-opacity: 1;
@@ -130,7 +142,7 @@ h1 em {
 }
 
 #lien-twitter {
-	right: -10px;
+	right: 0;
 
 	-webkit-transition: all 0.2s ease-out 0.2s;
 	-moz-transition: 		all 0.2s ease-out 0.2s;
@@ -138,8 +150,8 @@ h1 em {
 	transition: 				all 0.2s ease-out 0.2s;
 } 
 
-#lien-lastfm {
-	right: 50px;
+#lien-linkedin, #lien-github {
+	right: 40px;
 
 	-webkit-transition: all 0.2s ease-out 0.3s;
 	-moz-transition: 		all 0.2s ease-out 0.3s;
@@ -148,7 +160,7 @@ h1 em {
 } 
 
 #lien-blog {
-	right: 110px;
+	right: 80px;
 
 	-webkit-transition: all 0.2s ease-out 0.4s;
 	-moz-transition: 		all 0.2s ease-out 0.4s;
@@ -156,40 +168,63 @@ h1 em {
 	transition: 				all 0.2s ease-out 0.4s;
 } 
 
-
-
-/* Gestion de la vignette Twitter */
-#dernier-tweet {
-	position: absolute;
+#liste-reseaux-sociaux #lien-deplier-replier {
 	left: 0;
-	top: 0;
+	bottom: -50px;
 
+	-webkit-transition: all 1s ease-out 1s;
+	-moz-transition: 		all 1s ease-out 1s;
+	-o-transition: 			all 1s ease-out 1s;
+	transition: 				all 1s ease-out 1s;
+} 
+
+
+.boite-droite {
 	width: 400px;
 	padding: 20px;
 
+	position: absolute;
+	left: 0;
+	top: 0;
+	
 	background: #333333;
-	!border: 1px #cccccc solid;
+	/*border: 1px #cccccc solid;*/
 
 	z-index: -5;
  	opacity: 0;
 	-moz-opacity: 0;
 	filter:alpha(opacity=0);
-
+	
 	-webkit-transition: all 0.2s ease-out 0.4s;
 	-moz-transition: 		all 0.2s ease-out 0.4s;
 	-o-transition: 			all 0.2s ease-out 0.4s;
 	transition: 				all 0.2s ease-out 0.4s;
 }
 
-#dernier-tweet.position-finale {
+.boite-droite.position-finale {
 	left: 460px;
-
+	top: 0;
+	
 	opacity: 1;
 	-moz-opacity: 1;
 	filter:alpha(opacity=100);
 }
 
-#tw-texte {
+
+/* Gestion de la boite Github */
+.boite-droite.dernier-commit {
+	/*	La boîte partira du haut de la colonne plutôt que de la gauche */
+	left: 460px;
+	top: 0; /* mais ça va bouger */
+}
+
+
+
+
+
+
+
+.boite-droite .texte {
 	font-size: 1.2em;	
 	line-height: 1.4em;
 	color: #cccccc;
@@ -197,22 +232,22 @@ h1 em {
 	margin-bottom: 10px;
 }
 
-#tw-texte:first-letter {
+.boite-droite .texte:first-letter {
 	font-weight: bold;
-	font-size: 3em;
-	float: left;
-	margin: 0 5px 5px 0;
+	font-size: 1.5em;
 }
 
-#tw-texte a {
+.boite-droite .texte a, .boite-droite .date a {
 	color: #cccccc;
 }
 
-#tw-date {
+.boite-droite .date {
 	text-decoration: none;
 	color: #aaaaaa;
 	font-size: .8em;
 	font-style: italic;
+	
+	display: block;
 }
 
 

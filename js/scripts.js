@@ -2,35 +2,20 @@ $(document).ready(function() {
 
 	// Liste des éléments à animer via l'ajout d'une classe.
 	// On ajoutera la boîte twitter dans un deuxième temps si on arrive à la charger.
-	var a_animer = $('#photo-gauche, #liste-reseaux-sociaux li a, #legende');
+	var a_animer = $('#photo-gauche, #liste-reseaux-sociaux li a.a-animer, #legende');
 
-	// On maintient un retardateur pour éviter les effets de bords
-	// liés à l'utilisation du mouseover.
-	var retardateur, delai = 1000;
-
-	// On mouse over ...
-	$('#contenu').hover(function() {
-
+	var retardateur = setInterval(function() {
 		// On ajoute les classes pour déclencher le chargement.
 		clearInterval(retardateur);
-    a_animer.addClass('position-finale');
-
-    // Une fois que la légende est affichée on ne la masque plus.
-    a_animer = a_animer.not('#legende');
-
-	}, function() {
 		
-		// On va attendre le délai avant de masquer en enlevant les classes.
-		clearInterval(retardateur);
-    retardateur = setInterval(
-      function() {
-        clearInterval(retardateur);
-        a_animer.removeClass('position-finale');
-      },
-      delai
-    );
-
-	});
+    a_animer.addClass('position-finale');
+		
+		$('#ecran-chargement').fadeOut('fast', function() {
+			$('#ecran-final').fadeIn('fast', function() {
+				$('#lien-deplier-replier').addClass('position-finale');
+			});
+		});
+	}, 500);
 
 	// Chargement du dernier Tweet via JSONP.
 	// Si ce n'est pas disponible on dégradera la page en conséquence :
@@ -55,21 +40,83 @@ $(document).ready(function() {
 	  			date = new Date(
 			    s.replace(/^\w+ (\w+) (\d+) ([\d:]+) \+0000 (\d+)$/,
 			        "$1 $2 $4 $3 UTC"));
-
-
+				
+				var contexte = $('.boite-droite.dernier-tweet');
+				
 	  		// Récupération des infos et formatage.
-		  	$('#tw-texte').html( replaceURLWithHTMLLinks(d[0].text) );
-		  	$('#tw-date')
+		  	$('.texte', contexte).html( replaceURLWithHTMLLinks(d[0].text) );
+		  	$('.date', contexte)
 		  		.attr('href', 'https://twitter.com/#!/dandelionmood/status/'+d[0].id_str)
-		  		.html(date.strftime('Publié sur Twitter le %d/%m/%Y à %H:%M'));
-
-		  	// Vu que le chargement s'est bien déroulé, on ajoute notre 
-		  	// boîte à la liste des éléments à animer.
-		  	a_animer = a_animer.add( $('#dernier-tweet') );
+		  		.html(date.strftime('Publié sur <span class="icon-twitter"></span> Twitter<br />Le %d/%m/%Y à %H:%M'));
+				
+				contexte.addClass('position-finale');
+				charger_dernier_commit();
+				
 	  	}
 	  }
 	});
 
+	
+	
+	var charger_dernier_commit = function() {
+		$.ajax({
+			url: 'https://github.com/dandelionmood.json',
+			type: 'GET',
+			data: { },
+			dataType: 'jsonp',
+			success: function(events) {
+				
+				var contexte = $('.boite-droite.dernier-commit');
+				
+				contexte.css({
+					'top': $('.boite-droite.dernier-tweet').outerHeight() + 15 + 'px'
+				});
+				
+				$.each(events, function(i, evt) {
+					
+					if ( evt.type == 'PushEvent' ) {
+						
+						var evt_date = new Date( evt.created_at ),
+							evt_texte = evt.payload.shas.pop()[2],
+							evt_url = evt.repository.url,
+							rep_texte = evt.repository.name;
+							
+						$('.texte', contexte).html( evt_texte );
+						$('.date', contexte)
+							.attr('href', evt_url)
+							.html(evt_date.strftime('Commit pour le projet <strong>' + rep_texte +
+								'</strong> sur <span class="icon-github"></span> Github<br />Le %d/%m/%Y à %H:%M'));
+						
+						contexte.addClass('position-finale');
+						
+						return false;
+					}
+					
+					return true;
+				
+				});
+			}
+		});	
+	}
+	
+	var interface_depliee = true;
+	$('#lien-deplier-replier').click(function(e) {
+		if ( interface_depliee ) {
+			a_animer = $(jQuery.grep( $('.position-finale'), function(e){
+				return $(e).attr('id') != 'lien-deplier-replier'
+					&& $(e).attr('id') != 'legende';
+			}));
+			a_animer.removeClass('position-finale');
+			$(this).removeClass('icon-minus-sign').addClass('icon-plus-sign');
+			interface_depliee  = false;
+		} else {
+			a_animer.addClass('position-finale');
+			$(this).removeClass('icon-plus-sign').addClass('icon-minus-sign');
+			interface_depliee = true;
+		}
+	});
+	
+	
 });
 
 // Strftime : http://hacks.bluesmoon.info/strftime/
