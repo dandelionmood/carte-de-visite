@@ -147,7 +147,6 @@ var charger_dernier_disque = function(fcb) {
 				url = dpost.post_url,
 				url_photo = dpost.photos[0].alt_sizes[3].url,
 				texte = dpost.caption.split('\n')[0];
-			console.log(dpost);
 			
 			var contexte = $('.boite-droite.dernier-disque');
 			contexte.css({
