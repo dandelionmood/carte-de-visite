@@ -11,19 +11,27 @@ a img {
 }
 
 #contenu {
-	width: 380px;
-	height: 200px;
+	width: 440px;
+	height: 240px;
 
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	margin-left: -200px;
 	margin-top: -200px;
+}
 
-	padding: 20px 30px;
-	background: #ccc url(../images/fond-bloc.png) no-repeat 0px 0;
-
+#boite-contenu {
+	width: 440px;
+	height: 240px;
 	
+	z-index: 1;
+	
+	background: #ccc url(../images/fond-bloc.png) no-repeat 0px 0;
+}
+
+#in-contenu {
+	padding: 20px 30px;
 }
 
 article section {
@@ -100,7 +108,17 @@ h1 em {
 
 
 
-
+#liste-reseaux-sociaux {
+	display: block;
+	width: 100%;
+	padding: 0;
+	
+	position: absolute;
+	bottom: -40px;
+	left: 0;
+	z-index: -5;
+	height: 32px;
+}
 
 /* Gestion des vignettes de réseaux sociaux */
 #liste-reseaux-sociaux li {
@@ -109,7 +127,7 @@ h1 em {
 
 #liste-reseaux-sociaux li a {
 	display: block;
-	position: absolute;
+	float: right;
 	
 	color: white;
 	text-shadow: 0px 0px 9px #777;
@@ -117,14 +135,12 @@ h1 em {
 	font-size: 32px;
 	padding: 5px;
 	width: 32px;
+	margin-top: -40px;
 	
-	bottom: 0;
 	
-	z-index: -5;
- 	opacity: 0;
+ 	/*opacity: 0;
 	-moz-opacity: 0;
-	filter:alpha(opacity=0);
-
+	filter:alpha(opacity=0);*/
 }
 
 #liste-reseaux-sociaux li a:hover {
@@ -134,43 +150,50 @@ h1 em {
 
 
 #liste-reseaux-sociaux li a.position-finale {
-	bottom: -50px;
-
-	opacity: 1;
+	margin-top: 10px;
+	
+	/*opacity: 1;
 	-moz-opacity: 1;
-	filter:alpha(opacity=100);
+	filter:alpha(opacity=100);*/
 }
 
 #lien-twitter {
-	right: 0;
-
 	-webkit-transition: all 0.2s ease-out 0.2s;
 	-moz-transition: 		all 0.2s ease-out 0.2s;
 	-o-transition: 			all 0.2s ease-out 0.2s;
 	transition: 				all 0.2s ease-out 0.2s;
 } 
 
-#lien-linkedin, #lien-github {
-	right: 40px;
-
+#lien-github {
 	-webkit-transition: all 0.2s ease-out 0.3s;
 	-moz-transition: 		all 0.2s ease-out 0.3s;
 	-o-transition: 			all 0.2s ease-out 0.3s;
 	transition: 				all 0.2s ease-out 0.3s;
-} 
+}
 
-#lien-blog {
-	right: 80px;
-
+#lien-linkedin {
 	-webkit-transition: all 0.2s ease-out 0.4s;
 	-moz-transition: 		all 0.2s ease-out 0.4s;
 	-o-transition: 			all 0.2s ease-out 0.4s;
 	transition: 				all 0.2s ease-out 0.4s;
+}
+
+#lien-lastfm {
+	-webkit-transition: all 0.2s ease-out 0.6s;
+	-moz-transition: 		all 0.2s ease-out 0.6s;
+	-o-transition: 			all 0.2s ease-out 0.6s;
+	transition: 				all 0.2s ease-out 0.6s;
+}
+
+#lien-blog {
+	-webkit-transition: all 0.2s ease-out 0.8s;
+	-moz-transition: 		all 0.2s ease-out 0.8s;
+	-o-transition: 			all 0.2s ease-out 0.8s;
+	transition: 				all 0.2s ease-out 0.8s;
 } 
 
 #liste-reseaux-sociaux #lien-deplier-replier {
-	left: 0;
-	bottom: -50px;
+	float: left;
 
 	-webkit-transition: all 1s ease-out 1s;
 	-moz-transition: 		all 1s ease-out 1s;
@@ -218,7 +241,12 @@ h1 em {
 	top: 0; /* mais ça va bouger */
 }
 
-
+/* Gestion de la boite des disques */
+.boite-droite.dernier-disque {
+	/*	La boîte partira du haut de la colonne plutôt que de la gauche */
+	left: 460px;
+	top: 0; /* mais ça va bouger */
+}
 
 
 
@@ -250,6 +278,10 @@ h1 em {
 	display: block;
 }
 
+.boite-droite .image {
+	float: right;
+	border: none;
+}
 
 /* Légende */
 #legende {

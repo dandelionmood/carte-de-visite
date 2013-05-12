@@ -31,48 +31,58 @@
 
 	<body>
 		
-		<div id="contenu" class="boite">
+		<div id="contenu">
 			
-			<article id="ecran-chargement">
-				<div style="text-align: center; margin-top: 50px;">
-					<i class="icon-refresh icon-spin" style="font-size: 120px;"></i>
+			<div id="boite-contenu" class="boite">
+				<div id="in-contenu">
+					<article id="ecran-chargement">
+						<div style="text-align: center; margin-top: 50px;">
+							<i class="icon-refresh icon-spin" style="font-size: 120px;"></i>
+						</div>
+					</article>
+					
+					<article id="ecran-final" style="display: none;">
+						<h1>
+							Pierre Quillery
+							<br />
+							<em>Conception &amp; développement <br />de sites web.</em>
+						</h1>
+						<section>
+							Développeur strasbourgeois de <?php echo strftime('%Y') - 1987; ?> ans,<br />
+							j'aime l'<a href="https://www.github.com/dandelionmood" title="Mes réalisations sur GitHub">open source</a>, 
+							écouter de <a href="http://jaiecoutecamaplu.quillery.fr" target="_blank" title="Mes chroniques musicales">bons disques</a>
+							et <br /><a href="http://soundcloud.com/dandelionmood" target="_blank" title="Enregistrements sur Sound Cloud">faire de la musique</a> …
+						</section>
+					</article>	
 				</div>
-			</article>
+				
+			</div>
 			
-			<article id="ecran-final" style="display: none;">
-				<h1>
-					Pierre Quillery
-					<br />
-					<em>Conception &amp; développement <br />de sites web.</em>
-				</h1>
-				<section>
-					Développeur strasbourgeois de <?php echo strftime('%Y') - 1987; ?> ans,<br />
-					j'aime l'<a href="https://www.github.com/dandelionmood">open source</a>, 
-					écouter de <a href="http://www.last.fm/user/dandelionmood" target="_blank">bons disques</a>
-					et <br /><a href="http://soundcloud.com/dandelionmood" target="_blank">faire de la musique</a> …
-				</section>
-			</article>
-
+			<ul id="liste-reseaux-sociaux">
+				<li>
+					<a id="lien-twitter" href="http://twitter.com/#!/dandelionmood" target="_blank" class="a-animer icon-twitter" title="Mon compte Twitter"></a>
+				</li>
+				<li>
+					<a id="lien-lastfm" href="http://www.lastfm.com/dandelionmood" target="_blank" class="a-animer icon-music" title="Mon compte sur Last.fm"></a>
+				</li>
+				
+				<li>
+					<a id="lien-linkedin" href="http://www.linkedin.com/pub/pierre-quillery/62/69a/636" target="_blank" class="a-animer icon-linkedin" title="Mon profil LinkedIn"></a>
+				</li>
+				
+				<li>
+					<a id="lien-github" href="https://www.github.com/dandelionmood" target="_blank" class="a-animer icon-github" title="Mes réalisations sur GitHub"></a>
+				</li>
+				<li>
+					<a id="lien-blog" href="http://www.chosesafaire.fr" target="_blank" class="a-animer icon-home" title="Articles techniques"></a>
+				</li>
+				<li>
+					<a id="lien-deplier-replier" href="javascript:void(0);" class="icon-minus-sign" title="Masquer/Afficher les boutons"></a>
+				</li>
+			</ul>
+			
 			<aside>
 				<img src="images/photo.png" class="animation boite" id="photo-gauche" alt="une photo" />
-
-				<ul id="liste-reseaux-sociaux">
-					<li>
-						<a id="lien-twitter" href="http://twitter.com/#!/dandelionmood" target="_blank" class="a-animer icon-twitter"></a>
-					</li>
-					<!--<li>
-						<a id="lien-linkedin" href="http://www.linkedin.com/pub/pierre-quillery/62/69a/636" target="_blank" class="icon-linkedin"></a>
-					</li>-->
-					<li>
-						<a id="lien-github" href="https://www.github.com/dandelionmood" target="_blank" class="a-animer icon-github"></a>
-					</li>
-					<li>
-						<a id="lien-blog" href="http://www.chosesafaire.fr" target="_blank" class="a-animer icon-home"></a>
-					</li>
-					<li>
-						<a id="lien-deplier-replier" href="javascript:void(0);" class="icon-minus-sign"></a>
-					</li>
-				</ul>
 
 				<div class="dernier-tweet boite boite-droite">
 					<div class="texte">
@@ -92,9 +102,24 @@
 					</div>
 				</div>
 				
+				<div class="dernier-disque boite boite-droite">
+					<a class="url" href="#" target="_blank">
+						<img alt="" src="" class="image" />
+					</a>
+					<div class="texte">
+					</div>
+					<div>
+						<a class="date" href="#" target="_blank">
+						</a>
+					</div>
+				</div>
+				
 			</aside>
 
 		</div>
+		
+		
+		
 
 		<div id="legende">
 			icônes par <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>
