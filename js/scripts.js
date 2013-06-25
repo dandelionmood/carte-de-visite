@@ -56,16 +56,9 @@ var charger_dernier_tweet = function(fcb) {
 	// Si ce n'est pas disponible on dégradera la page en conséquence :
 	// le bloc ne s'affichera pas.
 	$.ajax({
-		url: 'https://api.twitter.com/1/statuses/user_timeline.json',
-		type: 'GET',
-		data: {
-			'include_entities': 'false',
-			'include_rts': 'false',
-			'exclude_replies': 'true',
-			'screen_name': 'dandelionmood',
-			'count': '5'
-		},
-		dataType: 'jsonp',
+		url: '/twitter.php',
+		type: 'GET', 
+		dataType: 'json',
 		success: function(d) {
 			// On s'assure d'avoir bien recu quelque chose en retour avant de
 			// poursuivre.
@@ -168,10 +161,6 @@ var charger_dernier_disque = function(fcb) {
 	});
 	
 };
-
-
-
-
 
 
 
